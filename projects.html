@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects | Vanquish Web Builders</title>
+  <meta name="description" content="Our demo projects — swipe through previews and open full sites.">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<header class="header">
+  <div class="container header-inner">
+
+    <a href="index.html" class="logo" aria-label="Go to home">
+      <img src="https://api.pixella.ai/api/v1/s3-proxy/images/logotypes/brand-kit-88d9e552-162a-4928-9d5b-2c592032af4d/ec3b3e5d-3eb3-4d66-9c86-31d9fd303552.png"
+           alt="Logo" />
+    </a>
+
+    <a href="index.html" class="brand-name">
+      Vanquish <span>Web</span> Builders
+    </a>
+
+    <button class="menu" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav" data-nav>
+      <a href="index.html">Home</a>
+      <a href="About.html">About</a>
+      <a href="services.html">Services</a>
+      <a class="is-current" href="projects.html">Projects</a>
+      <a class="btn small" href="contact.html">Contact</a>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h1>Projects</h1>
+        <p class="muted">Swipe through our demos — open any project to explore the full website.</p>
+      </div>
+
+      <div class="projects-wrap">
+        <div class="projects-track" id="projectsTrack">
+
+          <!-- PROJECT 1 -->
+          <article class="project-slide card">
+            <div class="project-top">
+              <div>
+                <h2 class="project-title">ClearFlow Plumbing</h2>
+                <p class="muted">Demo website • Mobile-first • Trade business style</p>
+              </div>
+
+              <a class="btn small" href="clearflow/index.html" target="_blank" rel="noopener">
+                Open demo
+              </a>
+            </div>
+
+            <div class="project-preview">
+              <iframe
+                src="clearflow/index.html"
+                title="ClearFlow Plumbing demo"
+                loading="lazy">
+              </iframe>
+            </div>
+
+            <ul class="list project-list">
+              <li>Swipeable preview</li>
+              <li>Click-to-call + quote CTA</li>
+              <li>Fast, clean layout</li>
+            </ul>
+          </article>
+
+          <!-- PROJECT 2 (GYM DEMO) -->
+          <article class="project-slide card">
+            <div class="project-top">
+              <div>
+                <h2 class="project-title">IronPulse Gym</h2>
+                <p class="muted">Demo website • Bold • High-energy gym branding</p>
+              </div>
+
+              <a class="btn small" href="ironpulse/index.html" target="_blank" rel="noopener">
+                Open demo
+              </a>
+            </div>
+
+            <div class="project-preview">
+              <iframe
+                src="ironpulse/index.html"
+                title="IronPulse Gym demo"
+                loading="lazy">
+              </iframe>
+            </div>
+
+            <ul class="list project-list">
+              <li>Premium dark design</li>
+              <li>Strong CTA + pricing</li>
+              <li>Mobile-first layout</li>
+            </ul>
+          </article>
+
+        </div>
+
+        <div class="projects-controls">
+          <button class="btn small ghost" type="button" id="prevBtn">←</button>
+          <button class="btn small ghost" type="button" id="nextBtn">→</button>
+        </div>
+
+        <p class="muted" style="margin-top:10px;">
+          Tip: On mobile, swipe left/right on the project cards.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <p>© <span id="year">2025</span> Vanquish Web Builders</p>
+  </div>
+</footer>
+
+<script>
+  const menu = document.querySelector(".menu");
+  const nav = document.querySelector("[data-nav]");
+  if (menu && nav) {
+    menu.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      menu.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  }
+
+  const year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
+
+  const track = document.getElementById("projectsTrack");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  function scrollBySlide(direction) {
+    const slide = track.querySelector(".project-slide");
+    if (!slide) return;
+    const gap = 16;
+    const amount = slide.getBoundingClientRect().width + gap;
+    track.scrollBy({ left: direction * amount, behavior: "smooth" });
+  }
+
+  if (prevBtn) prevBtn.addEventListener("click", () => scrollBySlide(-1));
+  if (nextBtn) nextBtn.addEventListener("click", () => scrollBySlide(1));
+</script>
+</body>
+</html>
